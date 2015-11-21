@@ -58,7 +58,7 @@
                                     <segment title="20th"/>
                                 </segments>
                                 <connections>
-                                    <action selector="onEveryNSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="U6b-iT-4TF"/>
+                                    <action selector="onNumberOfUnlocksBetweenNotifications_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="1sa-t4-eTC"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time I unlock my phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sn-s1-pD7">
@@ -88,13 +88,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UuB-CA-bhO">
-                                <rect key="frame" x="215" y="359" width="171" height="29"/>
+                                <rect key="frame" x="193.5" y="359" width="214" height="29"/>
                                 <animations/>
                                 <segments>
                                     <segment title="30m"/>
                                     <segment title="1h"/>
                                     <segment title="2h"/>
                                     <segment title="3h"/>
+                                    <segment title="4h"/>
                                 </segments>
                                 <connections>
                                     <action selector="onTimeSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="tjB-eR-vWr"/>
@@ -149,7 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="AndOrNotSelector" destination="d12-FM-evj" id="TMk-T2-HhQ"/>
-                        <outlet property="EveryNSelector" destination="MoJ-sV-Cc8" id="cEg-rJ-1B3"/>
+                        <outlet property="NumberOfUnlocksBetweenNotifications" destination="MoJ-sV-Cc8" id="nE0-kF-tTV"/>
                         <outlet property="TimeLabel" destination="IGg-VT-9O5" id="exb-7Q-qxk"/>
                         <outlet property="TimeSelector" destination="UuB-CA-bhO" id="cJB-An-rEm"/>
                     </connections>

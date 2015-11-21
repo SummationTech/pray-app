@@ -15,6 +15,8 @@
 		446ECB401BF595DB00D4F6EE /* PrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ECB3F1BF595DB00D4F6EE /* PrayTests.swift */; };
 		446ECB4B1BF595DB00D4F6EE /* PrayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ECB4A1BF595DB00D4F6EE /* PrayUITests.swift */; };
 		44F8990C1C000E6400177332 /* AndOrNotSelectorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8990B1C000E6400177332 /* AndOrNotSelectorState.swift */; };
+		44F8990F1C0012D200177332 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8990E1C0012D200177332 /* AppSettings.swift */; };
+		44F899131C002CFE00177332 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F899121C002CFE00177332 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		446ECB4A1BF595DB00D4F6EE /* PrayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayUITests.swift; sourceTree = "<group>"; };
 		446ECB4C1BF595DB00D4F6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F8990B1C000E6400177332 /* AndOrNotSelectorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndOrNotSelectorState.swift; sourceTree = "<group>"; };
+		44F8990E1C0012D200177332 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		44F899121C002CFE00177332 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				446ECB2A1BF595DB00D4F6EE /* AppDelegate.swift */,
-				446ECB2C1BF595DB00D4F6EE /* ViewController.swift */,
-				446ECB2E1BF595DB00D4F6EE /* Main.storyboard */,
+				44F8990E1C0012D200177332 /* AppSettings.swift */,
 				446ECB311BF595DB00D4F6EE /* Assets.xcassets */,
-				446ECB331BF595DB00D4F6EE /* LaunchScreen.storyboard */,
-				446ECB361BF595DB00D4F6EE /* Info.plist */,
 				44F8990D1C0011FC00177332 /* Enums */,
+				446ECB361BF595DB00D4F6EE /* Info.plist */,
+				446ECB331BF595DB00D4F6EE /* LaunchScreen.storyboard */,
+				446ECB2E1BF595DB00D4F6EE /* Main.storyboard */,
+				44F899121C002CFE00177332 /* NotificationManager.swift */,
+				446ECB2C1BF595DB00D4F6EE /* ViewController.swift */,
 			);
 			path = Pray;
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 				TargetAttributes = {
 					446ECB261BF595DB00D4F6EE = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 3DJHQLE2C6;
 					};
 					446ECB3A1BF595DB00D4F6EE = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -267,7 +274,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44F8990F1C0012D200177332 /* AppSettings.swift in Sources */,
 				446ECB2D1BF595DB00D4F6EE /* ViewController.swift in Sources */,
+				44F899131C002CFE00177332 /* NotificationManager.swift in Sources */,
 				44F8990C1C000E6400177332 /* AndOrNotSelectorState.swift in Sources */,
 				446ECB2B1BF595DB00D4F6EE /* AppDelegate.swift in Sources */,
 			);
@@ -411,10 +420,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SummationTech.Pray;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -422,10 +434,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pray/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SummationTech.Pray;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

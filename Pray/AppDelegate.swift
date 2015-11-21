@@ -13,9 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Ensure that we can send notifications
+        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
+            if (!settings.types.contains(.Alert)) {
+                application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
+            }
+        }
+        
         return true
     }
 
