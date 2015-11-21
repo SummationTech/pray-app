@@ -14,6 +14,7 @@
 		446ECB351BF595DB00D4F6EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446ECB331BF595DB00D4F6EE /* LaunchScreen.storyboard */; };
 		446ECB401BF595DB00D4F6EE /* PrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ECB3F1BF595DB00D4F6EE /* PrayTests.swift */; };
 		446ECB4B1BF595DB00D4F6EE /* PrayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ECB4A1BF595DB00D4F6EE /* PrayUITests.swift */; };
+		44F8990C1C000E6400177332 /* AndOrNotSelectorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8990B1C000E6400177332 /* AndOrNotSelectorState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		446ECB461BF595DB00D4F6EE /* PrayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		446ECB4A1BF595DB00D4F6EE /* PrayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayUITests.swift; sourceTree = "<group>"; };
 		446ECB4C1BF595DB00D4F6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44F8990B1C000E6400177332 /* AndOrNotSelectorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndOrNotSelectorState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				446ECB311BF595DB00D4F6EE /* Assets.xcassets */,
 				446ECB331BF595DB00D4F6EE /* LaunchScreen.storyboard */,
 				446ECB361BF595DB00D4F6EE /* Info.plist */,
+				44F8990D1C0011FC00177332 /* Enums */,
 			);
 			path = Pray;
 			sourceTree = "<group>";
@@ -123,6 +126,14 @@
 				446ECB4C1BF595DB00D4F6EE /* Info.plist */,
 			);
 			path = PrayUITests;
+			sourceTree = "<group>";
+		};
+		44F8990D1C0011FC00177332 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				44F8990B1C000E6400177332 /* AndOrNotSelectorState.swift */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446ECB2D1BF595DB00D4F6EE /* ViewController.swift in Sources */,
+				44F8990C1C000E6400177332 /* AndOrNotSelectorState.swift in Sources */,
 				446ECB2B1BF595DB00D4F6EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +496,7 @@
 				446ECB511BF595DB00D4F6EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		446ECB521BF595DB00D4F6EE /* Build configuration list for PBXNativeTarget "PrayTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				446ECB541BF595DB00D4F6EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		446ECB551BF595DB00D4F6EE /* Build configuration list for PBXNativeTarget "PrayUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +514,7 @@
 				446ECB571BF595DB00D4F6EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

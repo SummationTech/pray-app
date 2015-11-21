@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pray" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,149 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9Q-f3-OPL" userLabel="Pray Logo">
+                                <rect key="frame" x="187" y="8" width="227" height="120"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PrayLogo" translatesAutoresizingMaskIntoConstraints="NO" id="CrA-TQ-9uG">
+                                        <rect key="frame" x="20" y="20" width="100" height="80"/>
+                                        <animations/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pray" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ6-Av-57w">
+                                        <rect key="frame" x="128" y="35" width="79" height="50"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="E98-lT-iCP"/>
+                                    <constraint firstAttribute="height" constant="120" id="sDh-5s-G1c"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me to pray every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcR-JM-liX">
+                                <rect key="frame" x="205" y="136" width="190" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MoJ-sV-Cc8">
+                                <rect key="frame" x="190" y="178" width="219" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="2nd"/>
+                                    <segment title="3rd"/>
+                                    <segment title="5th"/>
+                                    <segment title="10th"/>
+                                    <segment title="20th"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onEveryNSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="U6b-iT-4TF"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time I unlock my phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sn-s1-pD7">
+                                <rect key="frame" x="212" y="227" width="177" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d12-FM-evj">
+                                <rect key="frame" x="212" y="268" width="176" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="and"/>
+                                    <segment title="or"/>
+                                    <segment title="but not"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onAndOrNotSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="rOT-dk-kCR"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGA-N9-yK7">
+                                <rect key="frame" x="279" y="317" width="42" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UuB-CA-bhO">
+                                <rect key="frame" x="215" y="359" width="171" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="30m"/>
+                                    <segment title="1h"/>
+                                    <segment title="2h"/>
+                                    <segment title="3h"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onTimeSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="tjB-eR-vWr"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="between" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7z-be-Nb1">
+                                <rect key="frame" x="267" y="408" width="66" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2015 SummationTech, Inc. All Rights Reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfk-wp-BMU">
+                                <rect key="frame" x="181" y="568" width="238" height="12"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:00 and 21:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGg-VT-9O5">
+                                <rect key="frame" x="237" y="449" width="126.5" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MoJ-sV-Cc8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Zc-ed-RgB"/>
+                            <constraint firstItem="MoJ-sV-Cc8" firstAttribute="top" secondItem="jcR-JM-liX" secondAttribute="bottom" constant="21" id="3hk-Vz-v3L"/>
+                            <constraint firstItem="y7z-be-Nb1" firstAttribute="top" secondItem="UuB-CA-bhO" secondAttribute="bottom" constant="21" id="7ki-Gb-Nm7"/>
+                            <constraint firstItem="IGg-VT-9O5" firstAttribute="top" secondItem="y7z-be-Nb1" secondAttribute="bottom" constant="21" id="Auj-na-3RF"/>
+                            <constraint firstItem="pfk-wp-BMU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CdU-cl-dI6"/>
+                            <constraint firstItem="cGA-N9-yK7" firstAttribute="top" secondItem="d12-FM-evj" secondAttribute="bottom" constant="21" id="GSH-vC-r0u"/>
+                            <constraint firstItem="d12-FM-evj" firstAttribute="top" secondItem="0Sn-s1-pD7" secondAttribute="bottom" constant="21" id="JgZ-1D-S6U"/>
+                            <constraint firstItem="UuB-CA-bhO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QAT-uy-pzy"/>
+                            <constraint firstItem="cGA-N9-yK7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SKO-Qk-yoO"/>
+                            <constraint firstItem="0Sn-s1-pD7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T1B-bK-IWf"/>
+                            <constraint firstItem="jcR-JM-liX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TT8-6y-ryS"/>
+                            <constraint firstItem="d12-FM-evj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a2f-2V-EHf"/>
+                            <constraint firstItem="B9Q-f3-OPL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="8" id="bLt-Yd-M1V"/>
+                            <constraint firstItem="0Sn-s1-pD7" firstAttribute="top" secondItem="MoJ-sV-Cc8" secondAttribute="bottom" constant="21" id="eyZ-Fl-DdM"/>
+                            <constraint firstItem="jcR-JM-liX" firstAttribute="top" secondItem="B9Q-f3-OPL" secondAttribute="bottom" constant="8" id="g9G-Tx-Lzg"/>
+                            <constraint firstItem="B9Q-f3-OPL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h7d-P9-UoD"/>
+                            <constraint firstItem="IGg-VT-9O5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hLE-x0-f41"/>
+                            <constraint firstItem="UuB-CA-bhO" firstAttribute="top" secondItem="cGA-N9-yK7" secondAttribute="bottom" constant="21" id="n7y-VM-ngs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pfk-wp-BMU" secondAttribute="bottom" constant="20" id="tjz-8Q-op4"/>
+                            <constraint firstItem="y7z-be-Nb1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xnk-V7-WuS"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="AndOrNotSelector" destination="d12-FM-evj" id="TMk-T2-HhQ"/>
+                        <outlet property="EveryNSelector" destination="MoJ-sV-Cc8" id="cEg-rJ-1B3"/>
+                        <outlet property="TimeLabel" destination="IGg-VT-9O5" id="exb-7Q-qxk"/>
+                        <outlet property="TimeSelector" destination="UuB-CA-bhO" id="cJB-An-rEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="429"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PrayLogo" width="100" height="80"/>
+    </resources>
 </document>
