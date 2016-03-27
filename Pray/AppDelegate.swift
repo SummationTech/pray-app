@@ -14,14 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Ensure that we can send notifications
-        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
-            if (!settings.types.contains(.Alert)) {
-                application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
-            }
-        }
-        
         return true
+    }
+    
+    func application(application: UIApplication,
+                     handleActionWithIdentifier identifier: String?,
+                     forLocalNotification notification: UILocalNotification,
+                     completionHandler: () -> Void) {
+        NotificationManager.HandleNotificationAction(identifier, notification: notification, completionHandler: completionHandler)
+        completionHandler()
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -45,7 +46,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

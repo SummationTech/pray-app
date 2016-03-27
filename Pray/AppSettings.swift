@@ -12,13 +12,9 @@ import UIKit
 class AppSettings: NSObject, NSCoding {
     // MARK: Properties
     // ==================================================
-    var NumberOfUnlocksBetweenNotifications: Int
-    var AndOrNot: Int
-    var TimeBetweenNotifications: Int
+    var TimeBetweenNotificationsIndex: Int
     
     struct PropertyKey {
-        static let NumberOfUnlocksBetweenNotificationsKey = "numberOfUnlocksBetweenNofications"
-        static let AndOrNotKey = "andOrNot"
         static let TimeBetweenNotificationsKey = "time"
     }
     
@@ -29,10 +25,8 @@ class AppSettings: NSObject, NSCoding {
     
     // MARK: Initialization
     // ==================================================
-    init(n numberOfUnlocksBetweenNotifications: Int, andOrNot: Int, timeBetweenNotifications: Int) {
-        self.NumberOfUnlocksBetweenNotifications = numberOfUnlocksBetweenNotifications
-        self.AndOrNot = andOrNot
-        self.TimeBetweenNotifications = timeBetweenNotifications
+    init(timeBetweenNotifications: Int) {
+        self.TimeBetweenNotificationsIndex = timeBetweenNotifications
         
         super.init()
     }
@@ -40,16 +34,12 @@ class AppSettings: NSObject, NSCoding {
     // MARK: NSCoding Members
     // ==================================================
     required convenience init?(coder aDecoder: NSCoder) {
-        let numberOfUnlocksBetweenNofications = aDecoder.decodeIntegerForKey(PropertyKey.NumberOfUnlocksBetweenNotificationsKey)
-        let andOrNot = aDecoder.decodeIntegerForKey(PropertyKey.AndOrNotKey)
         let timeBetweenNotifications = aDecoder.decodeIntegerForKey(PropertyKey.TimeBetweenNotificationsKey)
         
-        self.init(n: numberOfUnlocksBetweenNofications, andOrNot: andOrNot, timeBetweenNotifications: timeBetweenNotifications)
+        self.init(timeBetweenNotifications: timeBetweenNotifications)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(NumberOfUnlocksBetweenNotifications, forKey: PropertyKey.NumberOfUnlocksBetweenNotificationsKey)
-        aCoder.encodeInteger(AndOrNot, forKey: PropertyKey.AndOrNotKey)
-        aCoder.encodeInteger(TimeBetweenNotifications, forKey: PropertyKey.TimeBetweenNotificationsKey)
+        aCoder.encodeInteger(TimeBetweenNotificationsIndex, forKey: PropertyKey.TimeBetweenNotificationsKey)
     }
 }
