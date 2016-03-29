@@ -18,9 +18,12 @@ class NotificationManager: NSObject {
     
     enum ActionTitles: String {
         case Done = "Done"
-        case Later = "Later"
+        // REIMPLEMNT: for PRAY-6
+        // case Later = "Later"
         
-        static let AllValues = [Done, Later]
+        // static let AllValues = [Done, Later]
+        
+        static let AllValues = [Done]
     }
     
     private static var timeToPrayCategoryIdentifier: String {
@@ -64,9 +67,11 @@ class NotificationManager: NSObject {
             case getActionidentifier(ActionTitles.Done):
                 // TODO: DO STUFF
                 break
-            case getActionidentifier(ActionTitles.Later):
-                // TODO: STUFF
-                break
+                
+                // REIMPLEMNT: for PRAY-6
+                // case getActionidentifier(ActionTitles.Later):
+                // TODO: Delay the prayer by an amount of time
+            //     break
             default:
                 // TODO: BLOW UP
                 break
@@ -86,25 +91,29 @@ class NotificationManager: NSObject {
         }
     }
     
-    static private func addNotification(fireDate: NSDate, notificationText: String) {
+    static func AddNotification(fireDate: NSDate, notificationText: String) -> Int! {
         // Only allow 64 local notifications
         if NotificationIds.capacity > 64 {
-            return
+            return nil
         }
+        
+        let notificationId = self.getNextNotificationId()
         
         // Create a local notification
         let notification = UILocalNotification()
         notification.alertBody = notificationText
         notification.fireDate = fireDate
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.userInfo = ["NotificationId": self.getNextNotificationId()]
+        notification.userInfo = ["NotificationId": notificationId]
         notification.category = timeToPrayCategoryIdentifier
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        return notificationId
     }
     
     static func ClearNotifications(notificationIds: [Int]? = nil) {
-        let notificationIdsToCancel = notificationIds == nil ? NotificationIds : notificationIds
+        let notificationIdsToCancel = notificationIds == nil ? self.NotificationIds : notificationIds
         
         for notification in UIApplication.sharedApplication().scheduledLocalNotifications! as [UILocalNotification] {
             if notificationIdsToCancel!.contains(notification.userInfo!["NotificationId"] as! Int) {
@@ -113,15 +122,39 @@ class NotificationManager: NSObject {
         }
     }
     
-    static func CreateNotificationsForTimeInterval(intervalInMinutes: Int?) {
+    static func CreateNotificationsForTimeInterval(intervalInMinutes: Int?, earliestTime: TimeSpan, latestTime: TimeSpan) {
         if let unwrappedIntervalInMinutes = intervalInMinutes {
-            let intervalInSeconds = Double(unwrappedIntervalInMinutes * 60)
+            // DEBUG:
+            // let now = DateTime(hour: 9, minute: 0)
             
-            // TODO: Change text according to user's wishes
-            for i: Int in 1 ..< 50 {
-                addNotification(NSDate(timeIntervalSinceNow: intervalInSeconds * Double(i)), notificationText: "Time to Pray!")
+            let now = DateTime.Now
+            
+            // By default, start at 08:00 today
+            var nextNotificationDate = DateTime(year: now.Year, month: now.Month, day: now.Day, hour: earliestTime.Hours)
+            
+            // Create 64 notifications, the maximum allowed.
+            for i in 1 ..< 64 {
+                if i > 1 {
+                    nextNotificationDate.AddMinutes(unwrappedIntervalInMinutes)
+                }
+                
+                while !notificationDateValid(nextNotificationDate, earliestTime: earliestTime, latestTime: latestTime) {
+                    nextNotificationDate.AddMinutes(unwrappedIntervalInMinutes)
+                }
+                
+                NotificationManager.AddNotification(nextNotificationDate.ToNSDate(), notificationText: "Time to Pray!")
             }
         }
+    }
+    
+    static private func notificationDateValid(notificationDate: DateTime, earliestTime: TimeSpan, latestTime: TimeSpan) -> Bool {
+        let earliestTime = earliestTime
+        let latestTime = latestTime
+        let notificationTime = notificationDate.TimeOfDay
+        
+        // DEBUG: 
+        // return earliestTime <= notificationTime && notificationTime <= latestTime && notificationDate > DateTime(hour: 9, minute: 0)
+        return earliestTime <= notificationTime && notificationTime <= latestTime && notificationDate > DateTime.Now
     }
     
     static private func getNextNotificationId() -> Int {

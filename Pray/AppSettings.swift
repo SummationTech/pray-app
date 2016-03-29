@@ -12,10 +12,14 @@ import UIKit
 class AppSettings: NSObject, NSCoding {
     // MARK: Properties
     // ==================================================
-    var TimeBetweenNotificationsIndex: Int
+    var NotificationInterval: Int!
+    var EarliestTime: TimeSpan!
+    var LatestTime: TimeSpan!
     
     struct PropertyKey {
-        static let TimeBetweenNotificationsKey = "time"
+        static let NotificationInterval = "notificationinterval"
+        static let EarliestTime = "earliesttime"
+        static let LatestTime = "latesttime"
     }
     
     // MARK: Archiving Paths
@@ -25,8 +29,10 @@ class AppSettings: NSObject, NSCoding {
     
     // MARK: Initialization
     // ==================================================
-    init(timeBetweenNotifications: Int) {
-        self.TimeBetweenNotificationsIndex = timeBetweenNotifications
+    init(notificationInterval: Int, earliestTime: TimeSpan!, latestTime: TimeSpan!) {
+        self.NotificationInterval = notificationInterval
+        self.EarliestTime = earliestTime
+        self.LatestTime = latestTime
         
         super.init()
     }
@@ -34,12 +40,14 @@ class AppSettings: NSObject, NSCoding {
     // MARK: NSCoding Members
     // ==================================================
     required convenience init?(coder aDecoder: NSCoder) {
-        let timeBetweenNotifications = aDecoder.decodeIntegerForKey(PropertyKey.TimeBetweenNotificationsKey)
+        let notificationInterval = aDecoder.decodeIntegerForKey(PropertyKey.NotificationInterval)
+        let earliestTime = aDecoder.decodeObjectForKey(PropertyKey.EarliestTime) as! TimeSpan!
+        let latestTime = aDecoder.decodeObjectForKey(PropertyKey.LatestTime) as! TimeSpan!
         
-        self.init(timeBetweenNotifications: timeBetweenNotifications)
+        self.init(notificationInterval: notificationInterval, earliestTime: earliestTime, latestTime: latestTime)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(TimeBetweenNotificationsIndex, forKey: PropertyKey.TimeBetweenNotificationsKey)
+        aCoder.encodeInteger(NotificationInterval, forKey: PropertyKey.NotificationInterval)
     }
 }

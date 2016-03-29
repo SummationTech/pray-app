@@ -14,6 +14,8 @@
 		446ECB351BF595DB00D4F6EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446ECB331BF595DB00D4F6EE /* LaunchScreen.storyboard */; };
 		446ECB401BF595DB00D4F6EE /* PrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ECB3F1BF595DB00D4F6EE /* PrayTests.swift */; };
 		446ECB4B1BF595DB00D4F6EE /* PrayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ECB4A1BF595DB00D4F6EE /* PrayUITests.swift */; };
+		44968DA41CA8BA96008548E3 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968DA31CA8BA96008548E3 /* DateTime.swift */; };
+		44968DA61CA8E335008548E3 /* TimeSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968DA51CA8E335008548E3 /* TimeSpan.swift */; };
 		44F8990F1C0012D200177332 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8990E1C0012D200177332 /* AppSettings.swift */; };
 		44F899131C002CFE00177332 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F899121C002CFE00177332 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,8 @@
 		446ECB461BF595DB00D4F6EE /* PrayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		446ECB4A1BF595DB00D4F6EE /* PrayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayUITests.swift; sourceTree = "<group>"; };
 		446ECB4C1BF595DB00D4F6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44968DA31CA8BA96008548E3 /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
+		44968DA51CA8E335008548E3 /* TimeSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSpan.swift; sourceTree = "<group>"; };
 		44F8990E1C0012D200177332 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		44F899121C002CFE00177332 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +113,8 @@
 				446ECB2E1BF595DB00D4F6EE /* Main.storyboard */,
 				44F899121C002CFE00177332 /* NotificationManager.swift */,
 				446ECB2C1BF595DB00D4F6EE /* ViewController.swift */,
+				44968DA31CA8BA96008548E3 /* DateTime.swift */,
+				44968DA51CA8E335008548E3 /* TimeSpan.swift */,
 			);
 			path = Pray;
 			sourceTree = "<group>";
@@ -265,7 +271,9 @@
 			files = (
 				44F8990F1C0012D200177332 /* AppSettings.swift in Sources */,
 				446ECB2D1BF595DB00D4F6EE /* ViewController.swift in Sources */,
+				44968DA41CA8BA96008548E3 /* DateTime.swift in Sources */,
 				44F899131C002CFE00177332 /* NotificationManager.swift in Sources */,
+				44968DA61CA8E335008548E3 /* TimeSpan.swift in Sources */,
 				446ECB2B1BF595DB00D4F6EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

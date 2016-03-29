@@ -38,25 +38,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me to pray every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcR-JM-liX">
-                                <rect key="frame" x="205" y="136" width="190" height="20.5"/>
+                                <rect key="frame" x="205" y="136" width="190" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="between" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7z-be-Nb1">
-                                <rect key="frame" x="267" y="231.5" width="66" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2015 SummationTech, Inc. All Rights Reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfk-wp-BMU">
-                                <rect key="frame" x="181" y="568" width="238" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:00 and 21:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGg-VT-9O5">
-                                <rect key="frame" x="236" y="272.5" width="126.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvE-cQ-JUm">
+                                <rect key="frame" x="282" y="236" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,29 +59,77 @@
                                     <segment title="4h"/>
                                 </segments>
                                 <connections>
-                                    <action selector="onTimeSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="tjB-eR-vWr"/>
+                                    <action selector="onTimeIntervalSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="hW9-9H-QTo"/>
                                 </connections>
                             </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="pFX-1f-u4q">
+                                <rect key="frame" x="197" y="282" width="207" height="29"/>
+                                <segments>
+                                    <segment title="06:00"/>
+                                    <segment title="07:00"/>
+                                    <segment title="08:00"/>
+                                    <segment title="09:00"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onStartTimeSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="Axe-Gl-6XM"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="ISw-pJ-CMp">
+                                <rect key="frame" x="199" y="381" width="203" height="29"/>
+                                <segments>
+                                    <segment title="19:00"/>
+                                    <segment title="20:00"/>
+                                    <segment title="21:00"/>
+                                    <segment title="22:00"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onEndTimeSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="sej-7h-B8y"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="until" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-Yl-oLh">
+                                <rect key="frame" x="283" y="335" width="33" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="every day." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukx-fd-awk">
+                                <rect key="frame" x="261" y="444" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UuB-CA-bhO" firstAttribute="top" secondItem="jcR-JM-liX" secondAttribute="bottom" constant="26.5" id="6TS-s1-tGM"/>
-                            <constraint firstItem="y7z-be-Nb1" firstAttribute="top" secondItem="UuB-CA-bhO" secondAttribute="bottom" constant="21" id="7ki-Gb-Nm7"/>
-                            <constraint firstItem="IGg-VT-9O5" firstAttribute="top" secondItem="y7z-be-Nb1" secondAttribute="bottom" constant="21" id="Auj-na-3RF"/>
-                            <constraint firstItem="pfk-wp-BMU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CdU-cl-dI6"/>
-                            <constraint firstItem="jcR-JM-liX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TT8-6y-ryS"/>
+                            <constraint firstItem="jcR-JM-liX" firstAttribute="top" secondItem="B9Q-f3-OPL" secondAttribute="bottom" constant="8" symbolic="YES" id="1HB-YW-sHQ"/>
+                            <constraint firstItem="fGr-Yl-oLh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Xw-LV-cSR"/>
+                            <constraint firstItem="ukx-fd-awk" firstAttribute="top" secondItem="ISw-pJ-CMp" secondAttribute="bottom" constant="35" id="6q3-OP-ysX"/>
+                            <constraint firstItem="ISw-pJ-CMp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7N0-tO-lRP"/>
+                            <constraint firstItem="UuB-CA-bhO" firstAttribute="leading" secondItem="pFX-1f-u4q" secondAttribute="leading" constant="-4" id="D3O-pP-ToE"/>
+                            <constraint firstItem="pFX-1f-u4q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DH3-pf-zW5"/>
+                            <constraint firstItem="fGr-Yl-oLh" firstAttribute="top" secondItem="pFX-1f-u4q" secondAttribute="bottom" constant="25" id="DhO-wH-QTv"/>
+                            <constraint firstItem="UuB-CA-bhO" firstAttribute="top" secondItem="jcR-JM-liX" secondAttribute="bottom" constant="26" id="KZ5-Ed-49E"/>
+                            <constraint firstItem="ISw-pJ-CMp" firstAttribute="top" secondItem="fGr-Yl-oLh" secondAttribute="bottom" constant="25" id="Kxz-MI-aa4"/>
+                            <constraint firstItem="jcR-JM-liX" firstAttribute="centerX" secondItem="UuB-CA-bhO" secondAttribute="centerX" id="Ru7-VB-99p"/>
+                            <constraint firstItem="QvE-cQ-JUm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZW9-Tx-KhR"/>
                             <constraint firstItem="B9Q-f3-OPL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="8" id="bLt-Yd-M1V"/>
-                            <constraint firstItem="jcR-JM-liX" firstAttribute="top" secondItem="B9Q-f3-OPL" secondAttribute="bottom" constant="8" id="g9G-Tx-Lzg"/>
                             <constraint firstItem="B9Q-f3-OPL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h7d-P9-UoD"/>
-                            <constraint firstItem="IGg-VT-9O5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hLE-x0-f41"/>
-                            <constraint firstItem="UuB-CA-bhO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nge-ye-GKf"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pfk-wp-BMU" secondAttribute="bottom" constant="20" id="tjz-8Q-op4"/>
-                            <constraint firstItem="y7z-be-Nb1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xnk-V7-WuS"/>
+                            <constraint firstItem="jcR-JM-liX" firstAttribute="centerX" secondItem="B9Q-f3-OPL" secondAttribute="centerX" id="mG1-by-ugM"/>
+                            <constraint firstItem="ukx-fd-awk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mUS-bu-pbq"/>
+                            <constraint firstItem="ukx-fd-awk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xvn-Iu-OD1"/>
+                            <constraint firstItem="QvE-cQ-JUm" firstAttribute="top" secondItem="UuB-CA-bhO" secondAttribute="bottom" constant="25" id="yEE-0x-4FJ"/>
+                            <constraint firstItem="pFX-1f-u4q" firstAttribute="top" secondItem="QvE-cQ-JUm" secondAttribute="bottom" constant="25" id="yeo-su-aIS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="D3O-pP-ToE"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="TimeLabel" destination="IGg-VT-9O5" id="exb-7Q-qxk"/>
-                        <outlet property="TimeSelector" destination="UuB-CA-bhO" id="cJB-An-rEm"/>
+                        <outlet property="EarliestTimeSelector" destination="pFX-1f-u4q" id="Kvb-qc-06g"/>
+                        <outlet property="IntervalSelector" destination="UuB-CA-bhO" id="db9-dV-Egt"/>
+                        <outlet property="LatestTimeSelector" destination="ISw-pJ-CMp" id="RU8-bj-NU1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
