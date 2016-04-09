@@ -48,6 +48,8 @@ class AppSettings: NSObject, NSCoding {
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(NotificationInterval, forKey: PropertyKey.NotificationInterval)
+        aCoder.encodeInteger(self.NotificationInterval, forKey: PropertyKey.NotificationInterval)
+        aCoder.encodeObject(self.EarliestTime, forKey: PropertyKey.EarliestTime)
+        aCoder.encodeObject(self.LatestTime, forKey: PropertyKey.LatestTime)
     }
 }

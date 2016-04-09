@@ -43,8 +43,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvE-cQ-JUm">
-                                <rect key="frame" x="282" y="236" width="36" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="starting at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvE-cQ-JUm">
+                                <rect key="frame" x="260" y="236" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -86,8 +86,8 @@
                                     <action selector="onEndTimeSelector_valuechange:" destination="BYZ-38-t0r" eventType="valueChanged" id="sej-7h-B8y"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="until" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-Yl-oLh">
-                                <rect key="frame" x="283" y="335" width="33" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and ending at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGr-Yl-oLh">
+                                <rect key="frame" x="247.5" y="335" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -116,6 +116,7 @@
                             <constraint firstItem="B9Q-f3-OPL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h7d-P9-UoD"/>
                             <constraint firstItem="jcR-JM-liX" firstAttribute="centerX" secondItem="B9Q-f3-OPL" secondAttribute="centerX" id="mG1-by-ugM"/>
                             <constraint firstItem="ukx-fd-awk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mUS-bu-pbq"/>
+                            <constraint firstItem="QvE-cQ-JUm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pqf-kh-kLO"/>
                             <constraint firstItem="ukx-fd-awk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xvn-Iu-OD1"/>
                             <constraint firstItem="QvE-cQ-JUm" firstAttribute="top" secondItem="UuB-CA-bhO" secondAttribute="bottom" constant="25" id="yEE-0x-4FJ"/>
                             <constraint firstItem="pFX-1f-u4q" firstAttribute="top" secondItem="QvE-cQ-JUm" secondAttribute="bottom" constant="25" id="yeo-su-aIS"/>

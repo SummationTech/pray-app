@@ -68,18 +68,18 @@ class ViewController: UIViewController {
     // ==================================================
     let possibleNotificationIntervals = [30, 60, 120, 180, 240]
     
-    let possibleEndTimes = [
-        DateTime(hour: 19).TimeOfDay,
-        DateTime(hour: 20).TimeOfDay,
-        DateTime(hour: 21).TimeOfDay,
-        DateTime(hour: 22).TimeOfDay,
-        ]
-    
-    let possibleStartTimes = [
+    let possibleEarliestTimes = [
         DateTime(hour: 6).TimeOfDay,
         DateTime(hour: 7).TimeOfDay,
         DateTime(hour: 8).TimeOfDay,
         DateTime(hour: 9).TimeOfDay,
+        ]
+    
+    let possibleLatestTimes = [
+        DateTime(hour: 19).TimeOfDay,
+        DateTime(hour: 20).TimeOfDay,
+        DateTime(hour: 21).TimeOfDay,
+        DateTime(hour: 22).TimeOfDay,
         ]
     
     // MARK: Helper Methods
@@ -93,15 +93,25 @@ class ViewController: UIViewController {
         
         // Restore the selector states
         self.IntervalSelector.selectedSegmentIndex = self.possibleNotificationIntervals.indexOf(self.appSettings!.NotificationInterval)!
-        self.EarliestTimeSelector.selectedSegmentIndex = self.possibleStartTimes.indexOf(self.appSettings!.EarliestTime)!
-        self.LatestTimeSelector.selectedSegmentIndex = self.possibleEndTimes.indexOf(self.appSettings!.LatestTime)!
+        
+        for (i, time) in self.possibleEarliestTimes.enumerate() {
+            if time.ToDateTime() == self.appSettings!.EarliestTime.ToDateTime() {
+                self.EarliestTimeSelector.selectedSegmentIndex = i
+            }
+        }
+        
+        for (i, time) in self.possibleLatestTimes.enumerate() {
+            if time.ToDateTime() == self.appSettings!.LatestTime.ToDateTime() {
+                self.LatestTimeSelector.selectedSegmentIndex = i
+            }
+        }
     }
     
     func updateSettings() {
         // Only continue if all selectors are selected
-        if (self.IntervalSelector.selectedSegmentIndex != -1 ||
-            self.EarliestTimeSelector.selectedSegmentIndex != -1 ||
-            self.LatestTimeSelector.selectedSegmentIndex != -1) {
+        if (self.IntervalSelector.selectedSegmentIndex == -1 ||
+            self.EarliestTimeSelector.selectedSegmentIndex == -1 ||
+            self.LatestTimeSelector.selectedSegmentIndex == -1) {
             return
         }
         
@@ -119,8 +129,8 @@ class ViewController: UIViewController {
         }
         
         self.appSettings?.NotificationInterval = self.possibleNotificationIntervals[self.IntervalSelector.selectedSegmentIndex]
-        self.appSettings?.EarliestTime = self.possibleStartTimes[self.EarliestTimeSelector.selectedSegmentIndex]
-        self.appSettings?.LatestTime = self.possibleEndTimes[self.LatestTimeSelector.selectedSegmentIndex]
+        self.appSettings?.EarliestTime = self.possibleEarliestTimes[self.EarliestTimeSelector.selectedSegmentIndex]
+        self.appSettings?.LatestTime = self.possibleLatestTimes[self.LatestTimeSelector.selectedSegmentIndex]
         
         NSKeyedArchiver.archiveRootObject(self.appSettings!, toFile: AppSettings.ArchiveURL.path!)
         
