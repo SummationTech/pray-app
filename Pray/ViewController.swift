@@ -105,6 +105,9 @@ class ViewController: UIViewController {
                 self.LatestTimeSelector.selectedSegmentIndex = i
             }
         }
+        
+        // Top off the notification queue.
+        NotificationManager.CreateNotifications(self.appSettings!.NotificationInterval, earliestTime: self.appSettings!.EarliestTime, latestTime: self.appSettings!.LatestTime)
     }
     
     func updateSettings() {
@@ -139,9 +142,20 @@ class ViewController: UIViewController {
     }
     
     func setIntervalNotifications() {
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        
+        activityView.center = self.view.center
+        
+        activityView.startAnimating()
+        
+        self.view.addSubview(activityView)
+        
         NotificationManager.ClearNotifications()
-        NotificationManager.CreateNotificationsForTimeInterval(self.appSettings!.NotificationInterval,
-                                                               earliestTime: self.appSettings!.EarliestTime,
-                                                               latestTime: self.appSettings!.LatestTime)
+        NotificationManager.CreateNotifications(self.appSettings!.NotificationInterval,
+                                                earliestTime: self.appSettings!.EarliestTime,
+                                                latestTime: self.appSettings!.LatestTime)
+        
+        activityView.stopAnimating()
+
     }
 }

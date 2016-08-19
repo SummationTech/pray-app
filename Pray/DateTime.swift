@@ -108,6 +108,14 @@ public struct DateTime: Comparable {
         self.underlyingNSDate = dateFormatter.dateFromString(dateString)
     }
     
+    init(nsDate: NSDate?) {
+        if (nsDate == nil) {
+            self.underlyingNSDate = NSDate()
+        } else {
+            self.underlyingNSDate = nsDate
+        }
+    }
+    
     // MARK: Properties
     public var TimeOfDay: TimeSpan {
         return TimeSpan(hours: self.Hour, minutes: self.Minute, seconds: self.Second)

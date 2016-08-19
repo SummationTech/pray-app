@@ -77,13 +77,22 @@ class NotificationManager: NSObject {
                 break
             }
         }
+        
+        // Top off the notification queue.
+        let appSettings = NSKeyedUnarchiver.unarchiveObjectWithFile(AppSettings.ArchiveURL.path!) as? AppSettings
+        NotificationManager.CreateNotifications(appSettings!.NotificationInterval, earliestTime: appSettings!.EarliestTime, latestTime: appSettings!.LatestTime)
+    }
+    
+    static private var Notifications: [UILocalNotification] {
+        get {
+            return UIApplication.sharedApplication().scheduledLocalNotifications! as [UILocalNotification]
+        }
     }
     
     static private var NotificationIds: [Int] {
         get {
-            let notifications = UIApplication.sharedApplication().scheduledLocalNotifications! as [UILocalNotification]
             var notificationIds = [Int]()
-            for notification in notifications {
+            for notification in NotificationManager.Notifications {
                 notificationIds.append(notification.userInfo!["NotificationId"] as! Int)
             }
             
@@ -97,7 +106,7 @@ class NotificationManager: NSObject {
             return nil
         }
         
-        let notificationId = self.getNextNotificationId()
+        let notificationId = NotificationManager.getNextNotificationId()
         
         // Create a local notification
         let notification = UILocalNotification()
@@ -113,27 +122,26 @@ class NotificationManager: NSObject {
     }
     
     static func ClearNotifications(notificationIds: [Int]? = nil) {
-        let notificationIdsToCancel = notificationIds == nil ? self.NotificationIds : notificationIds
+        let notificationIdsToCancel = notificationIds == nil ? NotificationManager.NotificationIds : notificationIds
         
-        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! as [UILocalNotification] {
+        for notification in NotificationManager.Notifications {
             if notificationIdsToCancel!.contains(notification.userInfo!["NotificationId"] as! Int) {
                 UIApplication.sharedApplication().cancelLocalNotification(notification)
             }
         }
     }
     
-    static func CreateNotificationsForTimeInterval(intervalInMinutes: Int?, earliestTime: TimeSpan, latestTime: TimeSpan) {
+    static func CreateNotifications(intervalInMinutes: Int?, earliestTime: TimeSpan, latestTime: TimeSpan) {
         if let unwrappedIntervalInMinutes = intervalInMinutes {
-            // DEBUG:
-            // let now = DateTime(hour: 9, minute: 0)
-            
             let now = DateTime.Now
             
-            // By default, start at 08:00 today
+            // Base all date calculations off of the EarliestTime today
             var nextNotificationDate = DateTime(year: now.Year, month: now.Month, day: now.Day, hour: earliestTime.Hours)
             
-            // Create 64 notifications, the maximum allowed.
-            for i in 1 ..< 64 {
+            // "Top off" the notifications up to 64 notifications, the maximum allowed.
+            let notificationsToCreate = 64 - NotificationManager.NotificationIds.count
+            
+            for i in 1 ..< notificationsToCreate {
                 if i > 1 {
                     nextNotificationDate.AddMinutes(unwrappedIntervalInMinutes)
                 }
@@ -152,9 +160,23 @@ class NotificationManager: NSObject {
         let latestTime = latestTime
         let notificationTime = notificationDate.TimeOfDay
         
-        // DEBUG: 
-        // return earliestTime <= notificationTime && notificationTime <= latestTime && notificationDate > DateTime(hour: 9, minute: 0)
-        return earliestTime <= notificationTime && notificationTime <= latestTime && notificationDate > DateTime.Now
+        // Default to Now
+        var latestNotificationDate: DateTime = DateTime.Now
+        
+        for notification in NotificationManager.Notifications {
+            let notificationFireDate = DateTime(nsDate: notification.fireDate)
+            latestNotificationDate = latestNotificationDate < notificationFireDate ? notificationFireDate : latestNotificationDate
+        }
+        
+        if notificationTime < earliestTime {
+            return false
+        } else if latestTime < notificationTime {
+            return false
+        } else if notificationDate < latestNotificationDate {
+            return false
+        }
+        
+        return true
     }
     
     static private func getNextNotificationId() -> Int {
