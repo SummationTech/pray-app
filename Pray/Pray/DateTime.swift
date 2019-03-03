@@ -17,59 +17,59 @@ import Foundation
 
 public struct DateTime: Comparable {
     // MARK: Underlying NSDate
-    private var underlyingNSDate: NSDate! = NSDate()
+    fileprivate var underlyingNSDate: Date! = Date()
     
-    private var underlyingDateComponents: NSDateComponents {
+    fileprivate var underlyingDateComponents: DateComponents {
         get {
             // http://roadfiresoftware.com/2015/08/how-to-get-components-from-a-date-in-swift/
-            let unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Hour, .Minute, .Second]
-            return NSCalendar.currentCalendar().components(unitFlags, fromDate: self.underlyingNSDate)
+            let unitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
+            return (Calendar.current as NSCalendar).components(unitFlags, from: self.underlyingNSDate)
         }
         set {
-            self.underlyingNSDate = NSCalendar(identifier: NSCalendarIdentifierGregorian)?.dateFromComponents(newValue)
+            self.underlyingNSDate = Calendar(identifier: Calendar.Identifier.gregorian).date(from: newValue)
         }
     }
     
     // MARK: Date Components
-    private mutating func setComponent(newValue: AnyObject?, componentKey: String) {
+    fileprivate mutating func setComponent(_ newValue: AnyObject?, componentKey: String) {
         let dateCmps = self.underlyingDateComponents;
-        dateCmps.setValue(newValue, forKey: componentKey)
+        (dateCmps as NSDateComponents).setValue(newValue, forKey: componentKey)
         self.underlyingDateComponents = dateCmps
     }
     
     public var Year: Int {
-        get { return self.underlyingDateComponents.year }
-        set { self.setComponent(newValue, componentKey: "Year") }
+        get { return self.underlyingDateComponents.year! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "Year") }
     }
     
     public var Month: Int {
-        get { return self.underlyingDateComponents.month }
-        set { self.setComponent(newValue, componentKey: "Month") }
+        get { return self.underlyingDateComponents.month! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "Month") }
     }
     
     public var Day: Int {
-        get { return self.underlyingDateComponents.day }
-        set { self.setComponent(newValue, componentKey: "Day") }
+        get { return self.underlyingDateComponents.day! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "Day") }
     }
     
     public var Hour: Int {
-        get { return self.underlyingDateComponents.hour }
-        set { self.setComponent(newValue, componentKey: "Hour") }
+        get { return self.underlyingDateComponents.hour! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "Hour") }
     }
     
     public var Minute: Int {
-        get { return self.underlyingDateComponents.minute }
-        set { self.setComponent(newValue, componentKey: "Minute") }
+        get { return self.underlyingDateComponents.minute! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "Minute") }
     }
     
     public var Second: Int {
-        get { return self.underlyingDateComponents.second }
-        set { self.setComponent(newValue, componentKey: "Second") }
+        get { return self.underlyingDateComponents.second! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "Second") }
     }
     
-    public var TimeZone: NSTimeZone {
-        get { return self.underlyingDateComponents.timeZone! }
-        set { self.setComponent(newValue, componentKey: "TimeZone") }
+    public var TimeZone: Foundation.TimeZone {
+        get { return (self.underlyingDateComponents as NSDateComponents).timeZone! }
+        set { self.setComponent(newValue as AnyObject, componentKey: "TimeZone") }
     }
     
     public static var Now: DateTime {
@@ -80,10 +80,10 @@ public struct DateTime: Comparable {
     
     // MARK: Initialization
     init() {
-        self.underlyingNSDate = NSDate()
+        self.underlyingNSDate = Date()
     }
     
-    init(year: Int, month: Int, day: Int, hour: Int = 0, minute: Int = 0, second: Int = 0, timeZone: NSTimeZone = NSTimeZone.systemTimeZone()) {
+    init(year: Int, month: Int, day: Int, hour: Int = 0, minute: Int = 0, second: Int = 0, timeZone: Foundation.TimeZone = Foundation.TimeZone.current) {
         self.Year = year
         self.Month = month
         self.Day = day
@@ -99,18 +99,18 @@ public struct DateTime: Comparable {
     }
     
     init(ticks: Double) {
-        self.underlyingNSDate = NSDate(timeIntervalSince1970: ticks)
+        self.underlyingNSDate = Date(timeIntervalSince1970: ticks)
     }
     
     init(dateString: String, dateFormat: String) {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
-        self.underlyingNSDate = dateFormatter.dateFromString(dateString)
+        self.underlyingNSDate = dateFormatter.date(from: dateString)
     }
     
-    init(nsDate: NSDate?) {
+    init(nsDate: Date?) {
         if (nsDate == nil) {
-            self.underlyingNSDate = NSDate()
+            self.underlyingNSDate = Date()
         } else {
             self.underlyingNSDate = nsDate
         }
@@ -122,39 +122,39 @@ public struct DateTime: Comparable {
     }
     
     // MARK: Helper Functions
-    func ToNSDate() -> NSDate {
+    func ToNSDate() -> Date {
         return self.underlyingNSDate
     }
     
-    func Within(date1: DateTime, date2: DateTime) -> Bool {
+    func Within(_ date1: DateTime, date2: DateTime) -> Bool {
         return (date1 > self && self > date2) || (date2 > self && self > date1)
     }
     
-    mutating func Add(seconds: Int) {
-        self.underlyingNSDate = self.underlyingNSDate.dateByAddingTimeInterval(Double(seconds))
+    mutating func Add(_ seconds: Int) {
+        self.underlyingNSDate = self.underlyingNSDate.addingTimeInterval(Double(seconds))
     }
     
-    mutating func AddMinutes(minutes: Int) {
+    mutating func AddMinutes(_ minutes: Int) {
         self.Add(minutes * 60)
     }
     
-    public func ToString(dateFormat: String = "yyyy/MM/dd HH:mm:ss") -> String {
-        let dateFormatter = NSDateFormatter()
+    public func ToString(_ dateFormat: String = "yyyy/MM/dd HH:mm:ss") -> String {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
-        return dateFormatter.stringFromDate(self.underlyingNSDate)
+        return dateFormatter.string(from: self.underlyingNSDate)
     }
 }
 
 // MARK: NSDate Comparisons
-public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs === rhs || lhs.compare(rhs) == .OrderedSame
+public func ==(lhs: Date, rhs: Date) -> Bool {
+    return lhs == rhs || lhs.compare(rhs) == .orderedSame
 }
 
-public func <(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.compare(rhs) == .OrderedAscending
+public func <(lhs: Date, rhs: Date) -> Bool {
+    return lhs.compare(rhs) == .orderedAscending
 }
 
-extension NSDate: Comparable { }
+extension Date: Comparable { }
 
 // MARK: DateTime Comparisons
 

@@ -25,19 +25,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let timeFormatString = NSDateFormatter.dateFormatFromTemplate("j", options: 0, locale: NSLocale.currentLocale())!
-        let is12HrTime = timeFormatString.containsString("a")
+        let timeFormatString = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: Locale.current)!
+        let is12HrTime = timeFormatString.contains("a")
         
         if is12HrTime {
-            self.EarliestTimeSelector.setTitle("6:00 AM", forSegmentAtIndex: 0)
-            self.EarliestTimeSelector.setTitle("7:00 AM", forSegmentAtIndex: 1)
-            self.EarliestTimeSelector.setTitle("8:00 AM", forSegmentAtIndex: 2)
-            self.EarliestTimeSelector.setTitle("9:00 AM", forSegmentAtIndex: 3)
+            self.EarliestTimeSelector.setTitle("6:00 AM", forSegmentAt: 0)
+            self.EarliestTimeSelector.setTitle("7:00 AM", forSegmentAt: 1)
+            self.EarliestTimeSelector.setTitle("8:00 AM", forSegmentAt: 2)
+            self.EarliestTimeSelector.setTitle("9:00 AM", forSegmentAt: 3)
             
-            self.LatestTimeSelector.setTitle("7:00 PM", forSegmentAtIndex: 0)
-            self.LatestTimeSelector.setTitle("8:00 PM", forSegmentAtIndex: 1)
-            self.LatestTimeSelector.setTitle("9:00 PM", forSegmentAtIndex: 2)
-            self.LatestTimeSelector.setTitle("10:00 PM", forSegmentAtIndex: 3)
+            self.LatestTimeSelector.setTitle("7:00 PM", forSegmentAt: 0)
+            self.LatestTimeSelector.setTitle("8:00 PM", forSegmentAt: 1)
+            self.LatestTimeSelector.setTitle("9:00 PM", forSegmentAt: 2)
+            self.LatestTimeSelector.setTitle("10:00 PM", forSegmentAt: 3)
         }
         
         self.loadSettings()
@@ -52,15 +52,15 @@ class ViewController: UIViewController {
     
     // MARK: Event Handlers
     // ==================================================
-    @IBAction func onTimeIntervalSelector_valuechange(sender: AnyObject) {
+    @IBAction func onTimeIntervalSelector_valuechange(_ sender: AnyObject) {
         self.updateSettings()
     }
     
-    @IBAction func onStartTimeSelector_valuechange(sender: AnyObject) {
+    @IBAction func onStartTimeSelector_valuechange(_ sender: AnyObject) {
         self.updateSettings()
     }
     
-    @IBAction func onEndTimeSelector_valuechange(sender: AnyObject) {
+    @IBAction func onEndTimeSelector_valuechange(_ sender: AnyObject) {
         self.updateSettings()
     }
     
@@ -85,22 +85,22 @@ class ViewController: UIViewController {
     // MARK: Helper Methods
     // ==================================================
     func loadSettings() {
-        self.appSettings = NSKeyedUnarchiver.unarchiveObjectWithFile(AppSettings.ArchiveURL.path!) as? AppSettings
+        self.appSettings = NSKeyedUnarchiver.unarchiveObject(withFile: AppSettings.ArchiveURL.path) as? AppSettings
         
         if self.appSettings == nil {
             return
         }
         
         // Restore the selector states
-        self.IntervalSelector.selectedSegmentIndex = self.possibleNotificationIntervals.indexOf(self.appSettings!.NotificationInterval)!
+        self.IntervalSelector.selectedSegmentIndex = self.possibleNotificationIntervals.index(of: self.appSettings!.NotificationInterval)!
         
-        for (i, time) in self.possibleEarliestTimes.enumerate() {
+        for (i, time) in self.possibleEarliestTimes.enumerated() {
             if time.ToDateTime() == self.appSettings!.EarliestTime.ToDateTime() {
                 self.EarliestTimeSelector.selectedSegmentIndex = i
             }
         }
         
-        for (i, time) in self.possibleLatestTimes.enumerate() {
+        for (i, time) in self.possibleLatestTimes.enumerated() {
             if time.ToDateTime() == self.appSettings!.LatestTime.ToDateTime() {
                 self.LatestTimeSelector.selectedSegmentIndex = i
             }
@@ -119,8 +119,8 @@ class ViewController: UIViewController {
         }
         
         // Ensure that we can send notifications
-        if let currentNotificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings() {
-            if (!currentNotificationSettings.types.contains(.Alert)) {
+        if let currentNotificationSettings = UIApplication.shared.currentUserNotificationSettings {
+            if (!currentNotificationSettings.types.contains(.alert)) {
                 NotificationManager.RegisterNotificationSettings()
             }
         }
@@ -135,14 +135,14 @@ class ViewController: UIViewController {
         self.appSettings?.EarliestTime = self.possibleEarliestTimes[self.EarliestTimeSelector.selectedSegmentIndex]
         self.appSettings?.LatestTime = self.possibleLatestTimes[self.LatestTimeSelector.selectedSegmentIndex]
         
-        NSKeyedArchiver.archiveRootObject(self.appSettings!, toFile: AppSettings.ArchiveURL.path!)
+        NSKeyedArchiver.archiveRootObject(self.appSettings!, toFile: AppSettings.ArchiveURL.path)
         
         // Update periodic notifications
         self.setIntervalNotifications()
     }
     
     func setIntervalNotifications() {
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         
         activityView.center = self.view.center
         

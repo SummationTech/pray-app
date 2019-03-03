@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TimeSpan: NSCoder, Comparable {
+open class TimeSpan: NSCoder, Comparable {
     var Years: Int!
     var Months: Int!
     var Days: Int!
@@ -44,21 +44,21 @@ public class TimeSpan: NSCoder, Comparable {
     
     // MARK: NSCoder Members
     required public init(coder aDecoder: NSCoder!) {
-        self.Years = aDecoder.decodeIntegerForKey(PropertyKey.Years)
-        self.Months = aDecoder.decodeIntegerForKey(PropertyKey.Months)
-        self.Days = aDecoder.decodeIntegerForKey(PropertyKey.Days)
-        self.Hours = aDecoder.decodeIntegerForKey(PropertyKey.Hours)
-        self.Minutes = aDecoder.decodeIntegerForKey(PropertyKey.Minutes)
-        self.Seconds = aDecoder.decodeIntegerForKey(PropertyKey.Seconds)
+        self.Years = aDecoder.decodeInteger(forKey: PropertyKey.Years)
+        self.Months = aDecoder.decodeInteger(forKey: PropertyKey.Months)
+        self.Days = aDecoder.decodeInteger(forKey: PropertyKey.Days)
+        self.Hours = aDecoder.decodeInteger(forKey: PropertyKey.Hours)
+        self.Minutes = aDecoder.decodeInteger(forKey: PropertyKey.Minutes)
+        self.Seconds = aDecoder.decodeInteger(forKey: PropertyKey.Seconds)
     }
     
-    func encodeWithCoder(aCoder: NSCoder!) {
-        aCoder.encodeInteger(self.Years, forKey: PropertyKey.Years)
-        aCoder.encodeInteger(self.Months, forKey: PropertyKey.Months)
-        aCoder.encodeInteger(self.Days, forKey: PropertyKey.Days)
-        aCoder.encodeInteger(self.Hours, forKey: PropertyKey.Hours)
-        aCoder.encodeInteger(self.Minutes, forKey: PropertyKey.Minutes)
-        aCoder.encodeInteger(self.Seconds, forKey: PropertyKey.Seconds)
+    func encodeWithCoder(_ aCoder: NSCoder!) {
+        aCoder.encode(self.Years, forKey: PropertyKey.Years)
+        aCoder.encode(self.Months, forKey: PropertyKey.Months)
+        aCoder.encode(self.Days, forKey: PropertyKey.Days)
+        aCoder.encode(self.Hours, forKey: PropertyKey.Hours)
+        aCoder.encode(self.Minutes, forKey: PropertyKey.Minutes)
+        aCoder.encode(self.Seconds, forKey: PropertyKey.Seconds)
     }
 }
 

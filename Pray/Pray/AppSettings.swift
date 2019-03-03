@@ -24,8 +24,8 @@ class AppSettings: NSObject, NSCoding {
     
     // MARK: Archiving Paths
     // ==================================================
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("settings")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("settings")
     
     // MARK: Initialization
     // ==================================================
@@ -40,16 +40,16 @@ class AppSettings: NSObject, NSCoding {
     // MARK: NSCoding Members
     // ==================================================
     required convenience init?(coder aDecoder: NSCoder) {
-        let notificationInterval = aDecoder.decodeIntegerForKey(PropertyKey.NotificationInterval)
-        let earliestTime = aDecoder.decodeObjectForKey(PropertyKey.EarliestTime) as! TimeSpan!
-        let latestTime = aDecoder.decodeObjectForKey(PropertyKey.LatestTime) as! TimeSpan!
+        let notificationInterval = aDecoder.decodeInteger(forKey: PropertyKey.NotificationInterval)
+        let earliestTime = aDecoder.decodeObject(forKey: PropertyKey.EarliestTime) as! TimeSpan!
+        let latestTime = aDecoder.decodeObject(forKey: PropertyKey.LatestTime) as! TimeSpan!
         
         self.init(notificationInterval: notificationInterval, earliestTime: earliestTime, latestTime: latestTime)
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(self.NotificationInterval, forKey: PropertyKey.NotificationInterval)
-        aCoder.encodeObject(self.EarliestTime, forKey: PropertyKey.EarliestTime)
-        aCoder.encodeObject(self.LatestTime, forKey: PropertyKey.LatestTime)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.NotificationInterval, forKey: PropertyKey.NotificationInterval)
+        aCoder.encode(self.EarliestTime, forKey: PropertyKey.EarliestTime)
+        aCoder.encode(self.LatestTime, forKey: PropertyKey.LatestTime)
     }
 }

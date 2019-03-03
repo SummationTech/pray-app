@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pray/TimeSpan.swift"
-            timestampString = "481859493.37494"
+            filePath = "Pray/ViewController.swift"
+            timestampString = "517721500.093988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "==(_:_:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "onTimeIntervalSelector_valuechange(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

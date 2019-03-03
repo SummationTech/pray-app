@@ -26,12 +26,12 @@ class NotificationManager: NSObject {
         static let AllValues = [Done]
     }
     
-    private static var timeToPrayCategoryIdentifier: String {
+    fileprivate static var timeToPrayCategoryIdentifier: String {
         get { return "TIME_TO_PRAY_CATEGORY" }
     }
     
-    static private func getActionidentifier(actionTitle: ActionTitles) -> String {
-        return "\(actionTitle.rawValue.uppercaseString)_ACTION"
+    static fileprivate func getActionidentifier(_ actionTitle: ActionTitles) -> String {
+        return "\(actionTitle.rawValue.uppercased())_ACTION"
     }
     
     
@@ -44,8 +44,8 @@ class NotificationManager: NSObject {
             let action = UIMutableUserNotificationAction()
             action.identifier = getActionidentifier(actionTitle)
             action.title = actionTitle.rawValue
-            action.activationMode = .Background
-            action.destructive = false
+            action.activationMode = .background
+            action.isDestructive = false
             
             actions.append(action)
         }
@@ -53,15 +53,15 @@ class NotificationManager: NSObject {
         // Create the notification category
         let prayNowNotificationCategory = UIMutableUserNotificationCategory()
         prayNowNotificationCategory.identifier = timeToPrayCategoryIdentifier
-        prayNowNotificationCategory.setActions(actions, forContext: .Default)
-        prayNowNotificationCategory.setActions(actions, forContext: .Minimal)
+        prayNowNotificationCategory.setActions(actions, for: .default)
+        prayNowNotificationCategory.setActions(actions, for: .minimal)
         
         // Register Notification Settings
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: [prayNowNotificationCategory])
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let settings = UIUserNotificationSettings(types: [.alert, .sound], categories: [prayNowNotificationCategory])
+        UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
-    static func HandleNotificationAction(identifier: String?, notification: UILocalNotification, completionHandler: () -> Void) {
+    static func HandleNotificationAction(_ identifier: String?, notification: UILocalNotification, completionHandler: () -> Void) {
         if notification.category == timeToPrayCategoryIdentifier {
             switch identifier! {
             case getActionidentifier(ActionTitles.Done):
@@ -79,17 +79,17 @@ class NotificationManager: NSObject {
         }
         
         // Top off the notification queue.
-        let appSettings = NSKeyedUnarchiver.unarchiveObjectWithFile(AppSettings.ArchiveURL.path!) as? AppSettings
+        let appSettings = NSKeyedUnarchiver.unarchiveObject(withFile: AppSettings.ArchiveURL.path!) as? AppSettings
         NotificationManager.CreateNotifications(appSettings!.NotificationInterval, earliestTime: appSettings!.EarliestTime, latestTime: appSettings!.LatestTime)
     }
     
-    static private var Notifications: [UILocalNotification] {
+    static fileprivate var Notifications: [UILocalNotification] {
         get {
-            return UIApplication.sharedApplication().scheduledLocalNotifications! as [UILocalNotification]
+            return UIApplication.shared.scheduledLocalNotifications! as [UILocalNotification]
         }
     }
     
-    static private var NotificationIds: [Int] {
+    static fileprivate var NotificationIds: [Int] {
         get {
             var notificationIds = [Int]()
             for notification in NotificationManager.Notifications {
@@ -100,7 +100,7 @@ class NotificationManager: NSObject {
         }
     }
     
-    static func AddNotification(fireDate: NSDate, notificationText: String) -> Int! {
+    static func AddNotification(_ fireDate: Date, notificationText: String) -> Int! {
         // Only allow 64 local notifications
         if NotificationIds.capacity > 64 {
             return nil
@@ -116,22 +116,22 @@ class NotificationManager: NSObject {
         notification.userInfo = ["NotificationId": notificationId]
         notification.category = timeToPrayCategoryIdentifier
         
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
         
         return notificationId
     }
     
-    static func ClearNotifications(notificationIds: [Int]? = nil) {
+    static func ClearNotifications(_ notificationIds: [Int]? = nil) {
         let notificationIdsToCancel = notificationIds == nil ? NotificationManager.NotificationIds : notificationIds
         
         for notification in NotificationManager.Notifications {
             if notificationIdsToCancel!.contains(notification.userInfo!["NotificationId"] as! Int) {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                UIApplication.shared.cancelLocalNotification(notification)
             }
         }
     }
     
-    static func CreateNotifications(intervalInMinutes: Int?, earliestTime: TimeSpan, latestTime: TimeSpan) {
+    static func CreateNotifications(_ intervalInMinutes: Int?, earliestTime: TimeSpan, latestTime: TimeSpan) {
         if let unwrappedIntervalInMinutes = intervalInMinutes {
             let now = DateTime.Now
             
@@ -150,12 +150,12 @@ class NotificationManager: NSObject {
                     nextNotificationDate.AddMinutes(unwrappedIntervalInMinutes)
                 }
                 
-                NotificationManager.AddNotification(nextNotificationDate.ToNSDate(), notificationText: "Time to Pray!")
+                NotificationManager.AddNotification(nextNotificationDate.ToNSDate() as Date, notificationText: "Time to Pray!")
             }
         }
     }
     
-    static private func notificationDateValid(notificationDate: DateTime, earliestTime: TimeSpan, latestTime: TimeSpan) -> Bool {
+    static fileprivate func notificationDateValid(_ notificationDate: DateTime, earliestTime: TimeSpan, latestTime: TimeSpan) -> Bool {
         let earliestTime = earliestTime
         let latestTime = latestTime
         let notificationTime = notificationDate.TimeOfDay
@@ -164,7 +164,7 @@ class NotificationManager: NSObject {
         var latestNotificationDate: DateTime = DateTime.Now
         
         for notification in NotificationManager.Notifications {
-            let notificationFireDate = DateTime(nsDate: notification.fireDate)
+            let notificationFireDate = DateTime(nsDate: notification.fireDate as! NSDate)
             latestNotificationDate = latestNotificationDate < notificationFireDate ? notificationFireDate : latestNotificationDate
         }
         
@@ -179,7 +179,7 @@ class NotificationManager: NSObject {
         return true
     }
     
-    static private func getNextNotificationId() -> Int {
-        return NotificationIds.capacity > 0 ? NotificationIds.maxElement()! + 1 : 1
+    static fileprivate func getNextNotificationId() -> Int {
+        return NotificationIds.capacity > 0 ? NotificationIds.max()! + 1 : 1
     }
 }

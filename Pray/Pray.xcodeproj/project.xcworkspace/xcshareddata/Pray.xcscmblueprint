@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9592BE3C57CB4B356D50A54409BD6978B76C1290",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9592BE3C57CB4B356D50A54409BD6978B76C1290" : 9223372036854775807,
+    "84D13E5B9DCDA9646F167F7BCE833039A976523E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F2B636A9-13D6-4B42-A268-0D7DB1E5A86F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9592BE3C57CB4B356D50A54409BD6978B76C1290" : "pray-app\/",
+    "84D13E5B9DCDA9646F167F7BCE833039A976523E" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pray",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pray\/Pray.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:sumnerevans\/dotfiles.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "84D13E5B9DCDA9646F167F7BCE833039A976523E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:SummationTech\/pray-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9592BE3C57CB4B356D50A54409BD6978B76C1290"
+    }
+  ]
+}
